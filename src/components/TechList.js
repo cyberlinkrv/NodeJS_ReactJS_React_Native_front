@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class TechList extends Component {
   state = {
+    newTech: '',
     techs: [
       'Node.js',
       'ReactJS',
@@ -9,15 +10,22 @@ class TechList extends Component {
     ]
   };
 
-  render() {
-    console.log( this.state);
+  handleInputChange = e => {
+    this.setState({ newTech: e.target.value }); 
+  }
 
-    return (
+  render() {
+      return (
+      <>
       <ul>
-        <li>Node.js</li>
-        <li>ReactJS</li>
-        <li>React Native</li>
+        {this.state.techs.map(tech => <li key={tech}>{tech}</li>)}
       </ul>
+      <input 
+        type="text" 
+        onChange={this.handleInputChange}
+        value={this.state.newTech}
+        />
+      </>
     )
   }
 }
